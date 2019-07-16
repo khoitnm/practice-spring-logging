@@ -5,13 +5,15 @@
 -->
 
 <configuration>
+    <!-- This including write the log to console with more colorful! -->
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
 
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <Pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} %-5level %logger{36} - %msg%n
-            </Pattern>
-        </encoder>
-    </appender>
+<!--    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
+<!--            <Pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} %-5level %logger{36} - %msg%n-->
+<!--            </Pattern>-->
+<!--        </encoder>-->
+<!--    </appender>-->
 
     <appender name="ROLLING_FILE"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -34,11 +36,14 @@
 
     </appender>
 
-    <logger name="org.tnmk.practicespringlogging.pro01simplelog.story.SimpleLogWriting" level="DEBUG" />
+
+    <logger name="org.tnmk.practicespringlogging.pro01simplelog" level="DEBUG" />
+    <!-- Somehow, the bellow logger doesn't work, and I've no idea why???!!! -->
+    <!-- <logger name="org.tnmk.practicespringlogging.pro01simplelog.story.SimpleLogWriting" level="DEBUG" />-->
 
     <root level="INFO">
         <appender-ref ref="ROLLING_FILE" />
-        <appender-ref ref="STDOUT" />
+<!--        <appender-ref ref="STDOUT" />-->
     </root>
 
 </configuration>
