@@ -1,4 +1,4 @@
-package org.tnmk.practicespringlogging.pro01conditionalconfig;
+package org.tnmk.practicespringlogging.pro01simplelog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

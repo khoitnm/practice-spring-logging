@@ -13,7 +13,7 @@
         </encoder>
     </appender>
 
-    <appender name="FILE"
+    <appender name="ROLLING_FILE"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>practice.log</file>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
@@ -34,12 +34,10 @@
 
     </appender>
 
-    <logger name="org.hibernate.type" level="INFO" />
-    <logger name="org.hibernate" level="INFO" />
-    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="INFO" />
+    <logger name="org.tnmk.practicespringlogging.pro01simplelog.story.SimpleLogWriting" level="DEBUG" />
 
     <root level="INFO">
-        <appender-ref ref="FILE" />
+        <appender-ref ref="ROLLING_FILE" />
         <appender-ref ref="STDOUT" />
     </root>
 
