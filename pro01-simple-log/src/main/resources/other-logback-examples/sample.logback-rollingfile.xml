@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
+    Just keep this file name exactly the same!
     http://www.baeldung.com/sql-logging-spring-boot
     https://www.mkyong.com/hibernate/how-to-configure-logging-in-hibernate-logback/
 -->

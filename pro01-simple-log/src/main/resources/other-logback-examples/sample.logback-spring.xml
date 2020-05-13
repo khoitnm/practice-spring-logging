@@ -1,13 +1,13 @@
 <configuration>
     <!-- Not a JSON appender for local environment -->
-    <appender name="fulllocal" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%yellow(%d{HH:mm:ss.SSS}) [%thread] %highlight(%-5level) %logger{36} - %mdc %cyan(%msg) %n</pattern>
         </encoder>
     </appender>
 
     <!-- JSON appender for not local environment -->
-    <appender name="not_fulllocal" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="json" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
             <layout class="com.leonardo.monalisa.common.logging.CustomJsonLayout">
                 <jsonFormatter class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
@@ -21,12 +21,12 @@
 
     <springProfile name="fulllocal">
         <root level="info">
-            <appender-ref ref="fulllocal"/>
+            <appender-ref ref="json"/>
         </root>
     </springProfile>
-    <springProfile name="!fulllocal">
+    <springProfile name="!fulllocal &amp; !componenttest">
         <root level="info">
-            <appender-ref ref="not_fulllocal"/>
+            <appender-ref ref="json"/>
         </root>
     </springProfile>
 </configuration>
