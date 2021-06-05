@@ -19,54 +19,42 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!-- JSON LOGGING: Begin -->
         <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jul-to-slf4j</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>log4j-over-slf4j</artifactId>
-        </dependency>
-
-        <!-- JSON format -->
-        <!-- ch.qos.logback.contrib.jackson.JacksonJsonFormatter -->
-        <dependency>
+            <!-- for ch.qos.logback.contrib.jackson.JacksonJsonFormatter -->
             <groupId>ch.qos.logback.contrib</groupId>
             <artifactId>logback-jackson</artifactId>
             <version>0.1.5</version>
         </dependency>
-        <!-- ch.qos.logback.contrib.json.classic.JsonLayout -->
         <dependency>
+            <!-- for ch.qos.logback.contrib.json.classic.JsonLayout -->
             <groupId>ch.qos.logback.contrib</groupId>
             <artifactId>logback-json-classic</artifactId>
             <version>0.1.5</version>
         </dependency>
-        <!-- com.fasterxml.jackson.databind.ObjectMapper -->
         <dependency>
+            <!-- for com.fasterxml.jackson.databind.ObjectMapper -->
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
         </dependency>
+        <!-- JSON LOGGING: End -->
 
-        <!--Test-->
+        <!--TEST: Begin -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>5.4.2</version>
             <scope>test</scope>
         </dependency>
+        <!--TEST: End -->
     </dependencies>
 
     <dependencyManagement>
@@ -93,13 +81,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.1</version>
-                <configuration>
-                    <includes>
-                        <include>**/*Test.java</include>
-                        <include>**/*Spec.java</include>
-                    </includes>
-                    <argLine>-Xmx2048m -XX:MaxPermSize=512m</argLine>
-                </configuration>
             </plugin>
         </plugins>
     </build>
