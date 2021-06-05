@@ -9,6 +9,7 @@ public class SimpleLogWriting {
 
     public void writeHello() {
         logger.info("Hi there Info");
+        logger.info("{\"broken json}");//This message will cause broken json pattern
         logger.debug("Hi there Debug");
         logger.trace("Hi there Trace");
         try {
