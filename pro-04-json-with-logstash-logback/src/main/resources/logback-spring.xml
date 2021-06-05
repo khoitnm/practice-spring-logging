@@ -7,6 +7,8 @@
             <jsonFactoryDecorator class="net.logstash.logback.decorate.NullJsonFactoryDecorator"/>
             -->
             <jsonGeneratorDecorator class="net.logstash.logback.decorate.PrettyPrintingJsonGeneratorDecorator"/>
+            <timestampPattern>yyyy-MM-dd 'T' HH:mm:ss.SSSZ</timestampPattern>
+            <timeZone>UTC</timeZone>
             <fieldNames>
                 <!-- tag names are the same as properties names in LogstashFieldNames.java -->
                 <timestamp>timeStamp</timestamp>
@@ -26,6 +28,16 @@
             <includeCallerData>true</includeCallerData>
             <includeMdc>true</includeMdc>
 <!--            <includeMdcKeyName>key01</includeMdcKeyName>-->
+
+            <!-- Custom stacktrace -->
+            <throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+                <maxDepthPerThrowable>30</maxDepthPerThrowable>
+                <maxLength>2048</maxLength>
+                <shortenedClassNameLength>20</shortenedClassNameLength>
+                <exclude>sun\.reflect\..*\.invoke.*</exclude>
+                <exclude>net\.sf\.cglib\.proxy\.MethodProxy\.invoke</exclude>
+                <rootCauseFirst>true</rootCauseFirst>
+            </throwableConverter>
         </encoder>
     </appender>
 
