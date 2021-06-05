@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.tnmk.skeleton.practicespringlogging</groupId>
-    <artifactId>pro-02-json-with-pattern-layout-encoder</artifactId>
+    <artifactId>pro-02-json-with-default-log-layout</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 

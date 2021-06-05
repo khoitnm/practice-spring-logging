@@ -1,4 +1,4 @@
-package org.tnmk.practicespringlogging.pro02jsonwithpatternlayoutencoder
+package org.tnmk.practicespringlogging.pro02jsonwithdefaultloglayout
 
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles

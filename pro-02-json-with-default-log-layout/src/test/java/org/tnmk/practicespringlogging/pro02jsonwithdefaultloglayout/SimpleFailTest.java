@@ -1,4 +1,4 @@
-package org.tnmk.practicespringlogging.pro02jsonwithpatternlayoutencoder;
+package org.tnmk.practicespringlogging.pro02jsonwithdefaultloglayout;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -6,13 +6,13 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.tnmk.practicespringlogging.pro02jsonwithpatternlayoutencoder.story.SimpleLogWriting;
+import org.tnmk.practicespringlogging.pro02jsonwithdefaultloglayout.story.SimpleLogWriting;
 
 //Note: the profile is "componenttest", hence the corresonding Spring configuration is "application-componenttest.yml".
 // However, the logback file in test is "logback-test.xml", which has nothing to do with the Spring profile name.
 @ActiveProfiles("componenttest")
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = Pro02JsonWithPatternLayoutEncoderApplication.class)
+@SpringBootTest(classes = Pro02JsonWithDefaultLogLayoutApplication.class)
 public class SimpleFailTest {
 
     private SimpleLogWriting simpleLogWriting = new SimpleLogWriting();

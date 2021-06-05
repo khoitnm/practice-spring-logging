@@ -1,11 +1,11 @@
-package org.tnmk.practicespringlogging.pro02jsonwithpatternlayoutencoder
+package org.tnmk.practicespringlogging.pro02jsonwithdefaultloglayout
 
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
 import spock.lang.Specification
 
 @ActiveProfiles("componenttest")
-@SpringBootTest(classes = Pro02JsonWithPatternLayoutEncoderApplication.class)
+@SpringBootTest(classes = Pro02JsonWithDefaultLogLayoutApplication.class)
 public class SimpleSpringSpec extends Specification{
 
     def 'test success'(){

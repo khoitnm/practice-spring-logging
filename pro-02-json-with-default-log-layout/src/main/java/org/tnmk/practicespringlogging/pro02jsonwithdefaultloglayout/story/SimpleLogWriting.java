@@ -1,8 +1,8 @@
-package org.tnmk.practicespringlogging.pro02jsonwithpatternlayoutencoder.story;
+package org.tnmk.practicespringlogging.pro02jsonwithdefaultloglayout.story;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.tnmk.practicespringlogging.pro02jsonwithpatternlayoutencoder.AppInitiator;
+import org.tnmk.practicespringlogging.pro02jsonwithdefaultloglayout.AppInitiator;
 
 public class SimpleLogWriting {
     public static Logger logger = LoggerFactory.getLogger(AppInitiator.class);
