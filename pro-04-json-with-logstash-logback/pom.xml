@@ -29,24 +29,6 @@
             <artifactId>logstash-logback-encoder</artifactId>
             <version>6.6</version>
         </dependency>
-<!--        -->
-<!--        <dependency>-->
-<!--            &lt;!&ndash; for ch.qos.logback.contrib.jackson.JacksonJsonFormatter &ndash;&gt;-->
-<!--            <groupId>ch.qos.logback.contrib</groupId>-->
-<!--            <artifactId>logback-jackson</artifactId>-->
-<!--            <version>0.1.5</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            &lt;!&ndash; for ch.qos.logback.contrib.json.classic.JsonLayout &ndash;&gt;-->
-<!--            <groupId>ch.qos.logback.contrib</groupId>-->
-<!--            <artifactId>logback-json-classic</artifactId>-->
-<!--            <version>0.1.5</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            &lt;!&ndash; for com.fasterxml.jackson.databind.ObjectMapper &ndash;&gt;-->
-<!--            <groupId>com.fasterxml.jackson.core</groupId>-->
-<!--            <artifactId>jackson-databind</artifactId>-->
-<!--        </dependency>-->
         <!-- JSON LOGGING: End -->
 
         <!--TEST: Begin -->
