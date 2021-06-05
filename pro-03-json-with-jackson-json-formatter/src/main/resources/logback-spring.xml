@@ -1,17 +1,4 @@
 <configuration>
-    <!-- CONSOLE -->
-    <appender name="CONSOLE01" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%yellow(%d{HH:mm:ss.SSS}) [%thread] %highlight(%-5level) %logger{36} - %mdc %cyan(%msg) %n</pattern>
-        </encoder>
-    </appender>
-
-    <appender name="CONSOLE02" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%green(%d{HH:mm:ss.SSS}) [%thread] %highlight(%-5level) %logger{36} - %mdc %green(%msg) %n</pattern>
-        </encoder>
-    </appender>
-
     <!-- JSON -->
     <appender name="JSON" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.contrib.json.classic.JsonLayout">
@@ -24,22 +11,8 @@
     </appender>
 
 
-    <logger name="org.springframework" level="OFF"/>
-
-    <springProfile name="fulllocal"> <!-- fulllocal OR componenttest -->
-        <root level="info">
-            <appender-ref ref="CONSOLE01"/>
-        </root>
-    </springProfile>
-    <springProfile name="componenttest"> <!-- fulllocal OR componenttest -->
-        <root level="OFF">
-            <appender-ref ref="CONSOLE02"/>
-        </root>
-
-    </springProfile>
-    <springProfile name="!fulllocal &amp; !componenttest"> <!-- NOT fulllocal AND NOT componenttest -->
-        <root level="info">
-            <appender-ref ref="JSON"/>
-        </root>
-    </springProfile>
+    <logger name="org.springframework" level="INFO"/>
+    <root level="info">
+        <appender-ref ref="JSON"/>
+    </root>
 </configuration>
