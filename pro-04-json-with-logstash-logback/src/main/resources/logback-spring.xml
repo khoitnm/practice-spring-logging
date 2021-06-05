@@ -2,7 +2,11 @@
     <!-- JSON -->
     <appender name="JSON" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <!--
+            We can add some additional decorators here if we want. Otherwise, just feel free to comment them out.
             <jsonFactoryDecorator class="net.logstash.logback.decorate.NullJsonFactoryDecorator"/>
+            -->
+            <jsonGeneratorDecorator class="net.logstash.logback.decorate.PrettyPrintingJsonGeneratorDecorator"/>
             <fieldNames>
                 <!-- tag names are the same as properties names in LogstashFieldNames.java -->
                 <timestamp>timeStamp</timestamp>
