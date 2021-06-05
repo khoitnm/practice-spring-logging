@@ -10,6 +10,8 @@ import org.tnmk.practicespringlogging.pro01simplelog.story.SimpleLogWriting;
 
 //Note: the profile is "componenttest", hence the corresonding Spring configuration is "application-componenttest.yml".
 // However, the logback file in test is "logback-test.xml", which has nothing to do with the Spring profile name.
+// It means that when running this test, it will write log with configuration in "logback-test.xml" in the `test` folder,
+// not with "logback-spring.xml" in the `main` folder.
 @ActiveProfiles("componenttest")
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Pro01SimpleLogApplication.class)
