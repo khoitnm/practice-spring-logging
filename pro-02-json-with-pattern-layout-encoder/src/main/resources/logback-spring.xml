@@ -1,0 +1,28 @@
+<configuration>
+    <springProperty scope="context" name="service_name" source="spring.application.name"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                {
+                "severity": "%level",
+                "service": "${service_name}",
+                "dd.trace_id": "%X{dd.trace_id}",
+                "dd.span_id": "%X{dd.span_id}",
+                "trace-id": "%X{dd.trace_id}",
+                "span-id": "%X{dd.span_id}",
+                "error-id": "%X{ERROR_ID}",
+                "thread": "%thread",
+                "class": "%c{0}",
+                "message": "%message",
+                "stacktrace": "%ex"
+                }%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.springframework" level="INFO"/>
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>
