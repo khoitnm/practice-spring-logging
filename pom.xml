@@ -11,6 +11,7 @@
     <modules>
         <module>pro01-simple-log</module>
         <module>pro-02-json-with-default-log-layout</module>
+        <module>pro-03-json-with-jackson-json-formatter</module>
     </modules>
 
     <properties>
