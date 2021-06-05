@@ -1,0 +1,33 @@
+<configuration>
+    <!-- JSON -->
+    <appender name="JSON" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <jsonFactoryDecorator class="net.logstash.logback.decorate.NullJsonFactoryDecorator"/>
+            <fieldNames>
+                <!-- tag names are the same as properties names in LogstashFieldNames.java -->
+                <timestamp>timeStamp</timestamp>
+                <level>severity</level>
+                <levelValue>[ignore]</levelValue>
+                <thread>thread</thread>
+                <mdc>attributes</mdc>
+                <message>message</message>
+                <logger>[ignore]</logger>
+                <version>[ignore]</version>
+                <callerClass>class</callerClass>
+                <callerMethod>method</callerMethod>
+                <callerLine>line</callerLine>
+                <callerFile>[ignore]</callerFile>
+                <stackTrace>stackTrace</stackTrace>
+            </fieldNames>
+            <includeCallerData>true</includeCallerData>
+            <includeMdc>true</includeMdc>
+<!--            <includeMdcKeyName>key01</includeMdcKeyName>-->
+        </encoder>
+    </appender>
+
+<!--    <logger name="org.springframework.boot" level="OFF"/>-->
+    <logger name="org.tnmk" level="ALL"/>
+    <root level="INFO">
+        <appender-ref ref="JSON"/>
+    </root>
+</configuration>
