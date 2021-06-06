@@ -6,7 +6,7 @@ import org.slf4j.MDC;
 import org.tnmk.practicespringlogging.pro04jsonwithlogstashlogback.AppInitiator;
 
 public class SimpleLogWriting {
-    public static Logger logger = LoggerFactory.getLogger(AppInitiator.class);
+    public static Logger logger = LoggerFactory.getLogger(SimpleLogWriting.class);
 
     public void writeHello() {
         MDC.put("key01", "val01");
