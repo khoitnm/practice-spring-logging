@@ -16,7 +16,7 @@
                 <level>severity</level>
                 <levelValue>[ignore]</levelValue>
                 <thread>thread</thread>
-                <mdc>attributes</mdc>
+                <mdc>mdc</mdc>
                 <message>message</message>
                 <logger>logger</logger>
                 <version>[ignore]</version>
