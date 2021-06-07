@@ -1,0 +1,29 @@
+<configuration>
+    <!-- CONSOLE -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>[%d{dd/MM/yyyy HH:mm:ss,SSS'Z'}] [%level] [%thread] [%class{0}.%method] %mdc - %message%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="COLORFUL_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%green(%d{HH:mm:ss.SSS}) [%thread] %highlight(%-5level) %logger{36} - %mdc %green(%msg) %n</pattern>
+        </encoder>
+    </appender>
+
+
+    <logger name="org.springframework" level="OFF"/>
+    <logger name="org.tnmk" level="ALL"/>
+
+    <springProfile name="default | local | componenttest">
+        <root level="OFF">
+            <appender-ref ref="COLORFUL_CONSOLE"/>
+        </root>
+    </springProfile>
+    <springProfile name="!default &amp; !local &amp; !componenttest"> <!-- NOT local AND NOT componenttest (we also can use the expression `!(default | local | componenttest)`) -->
+        <root level="info">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+</configuration>
