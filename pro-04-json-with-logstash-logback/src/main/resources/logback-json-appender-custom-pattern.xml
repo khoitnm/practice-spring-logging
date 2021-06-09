@@ -17,13 +17,25 @@
                 <timestamp>
                     <timeZone>UTC</timeZone>
                 </timestamp>
-                <mdc>
-                    <!-- Change correlationId field to trace.id -->
-                    <mdcKeyFieldName>correlationId=trace.id</mdcKeyFieldName>
-                    <mdcKeyFieldName>nonExistingMDCKey=some.non.existing.mdc.key</mdcKeyFieldName>
+<!--                <mdc>-->
+<!--                    &lt;!&ndash; Change correlationId field to trace.id &ndash;&gt;-->
+<!--                    <mdcKeyFieldName>correlationId=trace.id</mdcKeyFieldName>-->
+<!--                    <mdcKeyFieldName>nonExistingMDCKey=some.non.existing.mdc.key</mdcKeyFieldName>-->
 
-                    <!-- And keep other fields' names the same -->
-                </mdc>
+<!--                    &lt;!&ndash; And keep other fields' names the same &ndash;&gt;-->
+<!--                </mdc>-->
+                <nestedField>
+                    <fieldName>app-specific-fields</fieldName>
+                    <providers>
+                        <mdc>
+                            <excludeMdcKeyName>correlationId</excludeMdcKeyName>
+
+                            <mdcKeyFieldName>correlationId=trace.id</mdcKeyFieldName>
+                            <mdcKeyFieldName>spanId=span.id</mdcKeyFieldName>
+                            <mdcKeyFieldName>error_id=error.id</mdcKeyFieldName>
+                        </mdc>
+                    </providers>
+                </nestedField>
                 <pattern>
                     <!-- Guideline for pattern: http://logback.qos.ch/manual/layouts.html -->
                     <!-- In this example, we put thread, class, method, and line into the message
@@ -32,9 +44,10 @@
                     -->
                     <pattern>
                         {
+                        "trace.id":"%mdc{correlationId}",
                         "severity": "%level",
                         "context.key01": "${context_key01}",
-                        "message": "[%thread] [%class{26}.%method:%line] %message %n%ex"
+                        "message": "[%thread] [%class{26}.%method:%line] [MDC.key01=%mdc{key01}] %message %n%ex"
                         }
                     </pattern>
                 </pattern>
