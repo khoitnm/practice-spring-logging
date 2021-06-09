@@ -5,10 +5,13 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.tnmk.practicespringlogging.pro04jsonwithlogstashlogback.AppInitiator;
 
+import java.util.UUID;
+
 public class SimpleLogWriting {
     public static Logger logger = LoggerFactory.getLogger(SimpleLogWriting.class);
 
     public void writeHello() {
+        MDC.put("correlationId", UUID.randomUUID().toString());
         MDC.put("key01", "val01");
         MDC.put("key02", "val02");
         logger.info("Hi there Info");

@@ -1,0 +1,85 @@
+<included>
+    <springProperty scope="context" name="context_key01" source="some.key.in.application.yml"/>
+
+    <!-- JSON -->
+    <appender name="JSON" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <!--
+            Pretty format JSON log only useful on local machine only.
+            On server, the message will be parsed by Logstash or similar technologies anyway. So no need for pretty log on server.
+            <jsonGeneratorDecorator class="net.logstash.logback.decorate.PrettyPrintingJsonGeneratorDecorator"/>
+            -->
+            <jsonGeneratorDecorator class="net.logstash.logback.decorate.PrettyPrintingJsonGeneratorDecorator"/>
+
+            <!-- Guideline for xml configuration: https://github.com/logstash/logstash-logback-encoder (section "Composite Encoder/Layout") -->
+            <providers>
+                <sequence/> <!-- Useful for tracking potential message loss during transport -->
+                <timestamp>
+                    <timeZone>UTC</timeZone>
+                </timestamp>
+                <mdc>
+                    <!-- Change correlationId field to trace.id -->
+                    <mdcKeyFieldName>correlationId=trace.id</mdcKeyFieldName>
+
+                    <!-- And keep other fields' names the same -->
+                </mdc>
+                <pattern>
+                    <!-- Guideline for pattern: http://logback.qos.ch/manual/layouts.html -->
+                    <!-- In this example, we put thread, class, method, and line into the message
+                            because for ELK stack, we usually don't need to index them.
+                            Note: indexing has a cost (even though they are low)
+                    -->
+                    <pattern>
+                        {
+                        "severity": "%level",
+                        "context.key01": "${context_key01}",
+                        "message": "[%thread] [%class{26}.%method:%line] %message %n%ex"
+                        }
+                    </pattern>
+                </pattern>
+
+<!--                <stackTrace>-->
+<!--                    <throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">-->
+<!--                        <maxDepthPerThrowable>30</maxDepthPerThrowable>-->
+<!--                        <maxLength>2048</maxLength>-->
+<!--                        <shortenedClassNameLength>20</shortenedClassNameLength>-->
+<!--                        <rootCauseFirst>true</rootCauseFirst>-->
+
+<!--                        &lt;!&ndash; Explanation of StackHash: https://github.com/logstash/logstash-logback-encoder/blob/main/stack-hash.md &ndash;&gt;-->
+<!--                        <inlineHash>true</inlineHash>-->
+
+<!--                        &lt;!&ndash; Recommended exclusion rules: https://github.com/logstash/logstash-logback-encoder/blob/main/stack-hash.md &ndash;&gt;-->
+<!--                        &lt;!&ndash; generated class names &ndash;&gt;-->
+<!--                        <exclude>\$\$FastClassByCGLIB\$\$</exclude>-->
+<!--                        <exclude>\$\$EnhancerBySpringCGLIB\$\$</exclude>-->
+<!--                        <exclude>^sun\.reflect\..*\.invoke</exclude>-->
+<!--                        &lt;!&ndash; JDK internals &ndash;&gt;-->
+<!--                        <exclude>^com\.sun\.</exclude>-->
+<!--                        <exclude>^sun\.net\.</exclude>-->
+<!--                        &lt;!&ndash; dynamic invocation &ndash;&gt;-->
+<!--                        <exclude>^net\.sf\.cglib\.proxy\.MethodProxy\.invoke</exclude>-->
+<!--                        <exclude>^org\.springframework\.cglib\.</exclude>-->
+<!--                        <exclude>^org\.springframework\.transaction\.</exclude>-->
+<!--                        <exclude>^org\.springframework\.validation\.</exclude>-->
+<!--                        <exclude>^org\.springframework\.app\.</exclude>-->
+<!--                        <exclude>^org\.springframework\.aop\.</exclude>-->
+<!--                        <exclude>^java\.lang\.reflect\.Method\.invoke</exclude>-->
+<!--                        &lt;!&ndash; Spring plumbing &ndash;&gt;-->
+<!--                        <exclude>^org\.springframework\.ws\..*\.invoke</exclude>-->
+<!--                        <exclude>^org\.springframework\.ws\.transport\.</exclude>-->
+<!--                        <exclude>^org\.springframework\.ws\.soap\.saaj\.SaajSoapMessage\.</exclude>-->
+<!--                        <exclude>^org\.springframework\.ws\.client\.core\.WebServiceTemplate\.</exclude>-->
+<!--                        <exclude>^org\.springframework\.web\.filter\.</exclude>-->
+<!--                        &lt;!&ndash; Tomcat internals &ndash;&gt;-->
+<!--                        <exclude>^org\.apache\.tomcat\.</exclude>-->
+<!--                        <exclude>^org\.apache\.catalina\.</exclude>-->
+<!--                        <exclude>^org\.apache\.coyote\.</exclude>-->
+<!--                        <exclude>^java\.util\.concurrent\.ThreadPoolExecutor\.runWorker</exclude>-->
+<!--                        <exclude>^java\.lang\.Thread\.run$</exclude>-->
+<!--                    </throwableConverter>-->
+<!--                </stackTrace>-->
+            </providers>
+        </encoder>
+    </appender>
+
+</included>
