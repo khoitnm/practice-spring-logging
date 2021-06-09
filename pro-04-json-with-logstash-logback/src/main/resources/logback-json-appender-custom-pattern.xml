@@ -20,6 +20,7 @@
                 <mdc>
                     <!-- Change correlationId field to trace.id -->
                     <mdcKeyFieldName>correlationId=trace.id</mdcKeyFieldName>
+                    <mdcKeyFieldName>nonExistingMDCKey=some.non.existing.mdc.key</mdcKeyFieldName>
 
                     <!-- And keep other fields' names the same -->
                 </mdc>
