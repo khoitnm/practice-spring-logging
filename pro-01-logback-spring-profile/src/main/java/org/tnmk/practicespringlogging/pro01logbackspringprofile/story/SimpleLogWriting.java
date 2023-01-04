@@ -2,10 +2,11 @@ package org.tnmk.practicespringlogging.pro01logbackspringprofile.story;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.tnmk.practicespringlogging.pro01logbackspringprofile.AppInitiator;
+
+import java.lang.invoke.MethodHandles;
 
 public class SimpleLogWriting {
-    public static Logger logger = LoggerFactory.getLogger(SimpleLogWriting.class);
+    private final static Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     public void writeHello() {
         logger.info("Hi there Info");
@@ -15,7 +16,7 @@ public class SimpleLogWriting {
         try {
             throw new RuntimeException("Deliberated exception");
         } catch (Exception ex) {
-            logger.error("writeHello "+ex.getMessage(), ex);
+            logger.error("writeHello " + ex.getMessage(), ex);
         }
     }
 }

@@ -4,9 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.tnmk.practicespringlogging.pro02jsonwithdefaultloglayout.AppInitiator;
 
-public class SimpleLogWriting {
-    public static Logger logger = LoggerFactory.getLogger(AppInitiator.class);
+import java.lang.invoke.MethodHandles;
 
+public class SimpleLogWriting {
+    private final static Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
     public void writeHello() {
         logger.info("Hi there Info");
         logger.info("{\"broken json}");//This message will cause broken json pattern

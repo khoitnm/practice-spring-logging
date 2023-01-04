@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.tnmk.practicespringlogging.pro01logbackspringprofile.story.SimpleLogWriting;
 
+import java.lang.invoke.MethodHandles;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -28,7 +29,7 @@ public class SimpleSuccessTest {
   @Test
   void when_startApplication_then_logMessagesWillAutomaticallyWritten() throws Exception {
     // get Logback Logger
-    Logger testLogger = (Logger) LoggerFactory.getLogger(SimpleLogWriting.class);
+    Logger testLogger = (Logger) LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
     testLogger.setLevel(Level.ALL);
 
     // create and start a ListAppender
