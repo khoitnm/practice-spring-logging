@@ -15,6 +15,7 @@
         <module>pro-03-json-with-jackson-json-formatter</module>
         <module>pro-04-json-with-logstash-logback</module>
         <module>pro-05-tomcat-accesslog</module>
+        <module>pro-06-tomcat-accesslog-with-security</module>
     </modules>
 
     <properties>
