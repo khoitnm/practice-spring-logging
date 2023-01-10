@@ -16,6 +16,7 @@
         <module>pro-04-json-with-logstash-logback</module>
         <module>pro-05-tomcat-accesslog</module>
         <module>pro-06-tomcat-accesslog-with-security</module>
+        <module>pro-07-tomcat-accesslog-exclusion</module>
     </modules>
 
     <properties>
