@@ -22,16 +22,14 @@ public class TracingFilter extends GenericFilterBean {
     private static final String MDC_CORRELATION_ID = "CorrelationId";
 
     /**
-     * This pattern is the AntPath pattern, so the matcher logic is relied on AntPathMatcher.
-     *
-     * Future improvement: use PathPattern instead. You can read more in:
+     * This pattern is the PathPattern. You can read more in:
      * - https://spring.io/blog/2020/06/30/url-matching-with-pathpattern-in-spring-mvc
      * - https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/util/pattern/PathPattern.html
      */
     private static final String ACCESS_LOG_EXCLUSION_PATH_PATTERN = "/actuator/**";
     private static final String ACCESS_LOG_EXCLUSION_HTTP_ATTRIBUTE_KEY = "no-access-log";
     private static final String ACCESS_LOG_EXCLUSION_HTTP_ATTRIBUTE_VALUE = "true";
-    private final SimpleHttpPathMatcher simpleHttpPathMatcher = new SimpleHttpAntPathMatcher();
+    private final SimpleHttpPathMatcher simpleHttpPathMatcher = new SimpleHttpPathPatternMatcher(ACCESS_LOG_EXCLUSION_PATH_PATTERN);
 
     @Override
     public void doFilter(
@@ -74,7 +72,7 @@ public class TracingFilter extends GenericFilterBean {
     }
 
     private void markAccessLogExclusionIfMatching(HttpServletRequest httpServletRequest) {
-        if (simpleHttpPathMatcher.match(ACCESS_LOG_EXCLUSION_PATH_PATTERN, httpServletRequest)) {
+        if (simpleHttpPathMatcher.match(httpServletRequest)) {
             httpServletRequest.setAttribute(
                 ACCESS_LOG_EXCLUSION_HTTP_ATTRIBUTE_KEY,
                 ACCESS_LOG_EXCLUSION_HTTP_ATTRIBUTE_VALUE

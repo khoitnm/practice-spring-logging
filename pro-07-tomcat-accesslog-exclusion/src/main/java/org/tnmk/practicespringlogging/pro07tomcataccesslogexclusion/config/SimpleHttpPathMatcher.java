@@ -2,7 +2,12 @@ package org.tnmk.practicespringlogging.pro07tomcataccesslogexclusion.config;
 
 import javax.servlet.http.HttpServletRequest;
 
-public interface SimpleHttpPathMatcher {
+public abstract class SimpleHttpPathMatcher {
+    protected final String pattern;
 
-    boolean match(String pathPattern, HttpServletRequest httpServletRequest);
+    protected SimpleHttpPathMatcher(String pattern) {
+        this.pattern = pattern;
+    }
+
+    abstract public boolean match(HttpServletRequest httpServletRequest);
 }
