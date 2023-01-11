@@ -3,6 +3,7 @@ package org.tnmk.practicespringlogging.pro07tomcataccesslogexclusion.config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.GenericFilterBean;
 
@@ -20,6 +21,8 @@ public class TracingFilter extends GenericFilterBean {
     private final static Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
     private static final String HEADER_CORRELATION_ID = "CorrelationId";
     private static final String MDC_CORRELATION_ID = "CorrelationId";
+    private static final String EXCLUDE_ACCESS_LOG_PATH_PATTERN = "/actuator/**";
+
 
     @Override
     public void doFilter(
@@ -36,6 +39,7 @@ public class TracingFilter extends GenericFilterBean {
             String pccCorrelationId = getOrGenerateCorrelationId(httpServletRequest);
             MDC.put(MDC_CORRELATION_ID, pccCorrelationId);
 
+            markAccessLogExclusionIfNecessary(httpServletRequest);
 
             filterChain.doFilter(servletRequest, servletResponse);
         } finally {
@@ -58,6 +62,17 @@ public class TracingFilter extends GenericFilterBean {
             correlationId = generateCorrelationId();
         }
         return correlationId;
+    }
+
+    private void markAccessLogExclusionIfNecessary(HttpServletRequest httpServletRequest) {
+        AntPathMatcher antPathMatcher = new AntPathMatcher();
+//        PathPattern pattern= new PathPattern("", new PathPatternParser(), null);
+//        pattern.matches(PathContainer.parsePath(""))
+        String requestURI = httpServletRequest.getRequestURI();
+        boolean shouldExclude = antPathMatcher.match(EXCLUDE_ACCESS_LOG_PATH_PATTERN, requestURI);
+        if (shouldExclude) {
+            httpServletRequest.setAttribute("no-access-log", "true");
+        }
     }
 
     private String generateCorrelationId() {
