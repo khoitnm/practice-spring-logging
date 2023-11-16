@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Put this file in the test's resource folder, and keep the name exactly the same -->
+    <!-- # Turn off annoying Spring's log when running test: https://mkyong.com/spring-boot/spring-boot-test-how-to-stop-debug-logs/ -->
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+    <logger name="org.springframework" level="OFF"/>
+
+    <root level="WARN">
+        <appender-ref ref="CONSOLE" />
+    </root>
+</configuration>

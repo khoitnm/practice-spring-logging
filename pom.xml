@@ -10,6 +10,7 @@
 
     <modules>
         <module>pro01-simple-log</module>
+        <module>pro01b-simple-log-test</module>
         <module>pro-01-logback-spring-profile</module>
         <module>pro-02-json-with-default-log-layout</module>
         <module>pro-03-json-with-jackson-json-formatter</module>
