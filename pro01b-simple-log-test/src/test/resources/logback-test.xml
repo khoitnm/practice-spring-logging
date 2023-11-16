@@ -2,6 +2,4 @@
 <configuration>
     <!-- # Turn off annoying Spring's log when running test: https://mkyong.com/spring-boot/spring-boot-test-how-to-stop-debug-logs/ -->
     <include resource="org/springframework/boot/logging/logback/base.xml" />
-    <logger name="org.springframework" level="OFF"/>
-    <root level="OFF"/>
 </configuration>
